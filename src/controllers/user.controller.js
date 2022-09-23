@@ -7,7 +7,8 @@ module.exports.login = async (req, res) => {
     const login = await LoginService.login(email, password);
     if (login.length === 0) res.status(400).json({ message: 'Invalid fields' });
     else {
-      const token = getToken(email);
+      console.log(login);
+      const token = getToken(email, login.dataValues.id);
       res.status(200).json({ token }); 
 }
   } catch (error) {
