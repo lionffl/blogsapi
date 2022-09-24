@@ -14,6 +14,16 @@ const create = async (req, res) => {
   }
 };
 
+const getAll = async (_req, res) => {
+  try {
+    const users = await UserService.getAll();
+    res.status(200).json(users);  
+  } catch (error) {
+    console.log(400).json({ message: 'Something is wrong' });
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };

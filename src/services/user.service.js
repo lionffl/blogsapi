@@ -14,7 +14,12 @@ const findOne = (email) => {
  return user;
 };
 
+const getAll = () => User.findAll({
+  attributes: { exclude: ['password'] },
+});
+
 module.exports = {
   create,
   findOne,
+  getAll,
 };

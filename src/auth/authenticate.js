@@ -6,14 +6,14 @@ require('dotenv/config');
 
 const secret = process.env.JWT_SECRET;
 
-module.exports = async (req, res, next) => {
+module.exports.authenticate = async (req, res, next) => {
   const token = req.header('Authorization');
   if (!token) {
     return res.status(401).json({ message: 'Token not found' });
   }
   try {
     const decoded = jwt.verify(token, secret);
-    const email = await UserService.getUserById(decoded.data.id);
+    const email = await UserService.findOne(decoded.data.email);
 
     if (!email) {
       return res.status(401).json({ message: 'Expired or invalid token' });
@@ -21,6 +21,6 @@ module.exports = async (req, res, next) => {
     
     next();
   } catch (err) {
-    return res.status(401).json({ message: err.message });
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
