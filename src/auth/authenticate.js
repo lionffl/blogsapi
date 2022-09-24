@@ -18,6 +18,7 @@ module.exports = async (req, res, next) => {
     if (!email) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
+    
     next();
   } catch (err) {
     return res.status(401).json({ message: err.message });
