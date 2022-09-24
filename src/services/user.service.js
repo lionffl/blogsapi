@@ -18,8 +18,14 @@ const getAll = () => User.findAll({
   attributes: { exclude: ['password'] },
 });
 
+const getUserById = (id) => User.findOne({
+  where: { id },
+  attributes: { exclude: ['password'] },
+});
+
 module.exports = {
   create,
   findOne,
   getAll,
+  getUserById,
 };

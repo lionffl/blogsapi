@@ -19,11 +19,22 @@ const getAll = async (_req, res) => {
     const users = await UserService.getAll();
     res.status(200).json(users);  
   } catch (error) {
-    console.log(400).json({ message: 'Something is wrong' });
+    console.error(400).json({ message: 'Something is wrong' });
+  }
+};
+
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await UserService.getUserById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(400).json({ message: 'Something is wrong' });
   }
 };
 
 module.exports = {
   create,
   getAll,
+  getUserById,
 };

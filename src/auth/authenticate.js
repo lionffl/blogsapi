@@ -1,4 +1,3 @@
-// src/auth/validateJWT.js
 const jwt = require('jsonwebtoken');
 const UserService = require('../services/user.service');
 
