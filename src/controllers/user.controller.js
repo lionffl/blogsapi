@@ -1,6 +1,8 @@
 const UserService = require('../services/user.service');
 const { getToken } = require('../auth/getToken');
 
+const objError = { message: 'Something is wrong.' };
+
 const create = async (req, res) => {
   const { displayName, email, password } = req.body;
   try {
@@ -10,7 +12,7 @@ const create = async (req, res) => {
       res.status(201).json({ token });
   } catch (error) {
     console.error(error.message);
-    res.status(400).json({ message: 'Something is wrong.' });
+    res.status(400).json(objError);
   }
 };
 
@@ -19,7 +21,7 @@ const getAll = async (_req, res) => {
     const users = await UserService.getAll();
     res.status(200).json(users);  
   } catch (error) {
-    console.error(400).json({ message: 'Something is wrong' });
+    console.error(400).json(objError);
   }
 };
 
@@ -29,7 +31,7 @@ const getUserById = async (req, res) => {
     const user = await UserService.getUserById(id);
     res.status(200).json(user);
   } catch (error) {
-    console.error(400).json({ message: 'Something is wrong' });
+    console.error(400).json(objError);
   }
 };
 
