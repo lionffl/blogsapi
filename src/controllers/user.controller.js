@@ -5,9 +5,9 @@ const create = async (req, res) => {
   const { displayName, email, password } = req.body;
   try {
     const user = await UserService.create(displayName, email, password);
-      const { id } = user[0].dataValues;
+      const { id } = user.dataValues;
       const token = getToken(email, id);
-      res.status(200).json({ token });
+      res.status(201).json({ token });
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ message: 'Something is wrong.' });
