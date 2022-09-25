@@ -5,6 +5,9 @@ const { categoriesFieldValidation } = require('../middlewares/categoriesFieldVal
 
 const route = express.Router();
 
-route.post('/', authenticate, categoriesFieldValidation, CategoriesController.create);
+route.use(authenticate);
+route.route('/')
+  .post(categoriesFieldValidation, CategoriesController.create)
+  .get(CategoriesController.getAll);
 
 module.exports = route;

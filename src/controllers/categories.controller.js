@@ -13,6 +13,16 @@ const create = async (req, res) => {
   }
 };
 
+const getAll = async (_req, res) => {
+  try {
+    const categories = await CategoriesService.getAll();
+    res.status(200).json(categories);  
+  } catch (error) {
+    console.error(400).json(objError);
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };
