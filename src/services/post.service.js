@@ -4,11 +4,11 @@ const create = (title, content, userId) => BlogPost.create(
   { title, content, userId },
   );
 
-const findOne = (id) => BlogPost.findOne({
+const getPostById = (id) => BlogPost.findOne({
   where: { id },
 });
 
 module.exports = {
   create,
-  findOne,
+  getPostById,
 };

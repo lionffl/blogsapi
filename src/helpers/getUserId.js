@@ -6,8 +6,8 @@ const secret = process.env.JWT_SECRET;
 
 const getUserId = async (token) => {
   const decoded = jwt.verify(token, secret);
-  const user = await UserService.findOne(decoded.data.email);
-  return user.id;
+  const { id } = await UserService.getUserById(decoded.data.id);
+  return id;
 };
 
 module.exports = getUserId;

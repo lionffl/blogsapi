@@ -10,8 +10,8 @@ const create = async (req, res) => {
   try {
     const userId = await getUserId(token);
     let post = await BlogPostService.create(title, content, userId, categoryIds);
-    post = await BlogPostService.findOne(post.id);
-    await PostCategoryService.create(post.id, categoryIds);
+    post = await BlogPostService.getPostById(post.id);
+    PostCategoryService.create(post.id, categoryIds);
     res.status(201).json(post);
   } catch (error) {
     console.error(error.message);

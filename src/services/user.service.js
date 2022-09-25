@@ -7,7 +7,7 @@ const create = (displayName, email, password) => {
   return newUser;
 };
 
-const findOne = (email) => {
+const getUserByEmail = (email) => {
  const user = User.findOne({
   where: { email },
  });
@@ -25,7 +25,7 @@ const getUserById = (id) => User.findOne({
 
 module.exports = {
   create,
-  findOne,
+  getUserByEmail,
   getAll,
   getUserById,
 };

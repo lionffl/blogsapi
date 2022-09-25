@@ -12,7 +12,7 @@ module.exports.authenticate = async (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, secret);
-    const email = await UserService.findOne(decoded.data.email);
+    const email = await UserService.getUserByEmail(decoded.data.email);
 
     if (!email) {
       return res.status(401).json({ message: 'Expired or invalid token' });
