@@ -7,6 +7,7 @@ const route = express.Router();
 
 route.use(authenticate);
 route.route('/')
-  .post(postFieldsValidation, BlogPostController.create);
+  .post(postFieldsValidation, BlogPostController.create)
+  .get(BlogPostController.getAll);
 
 module.exports = route;
