@@ -1,11 +1,17 @@
+const getUserId = require('../helpers/getUserId');
 const BlogPostService = require('../services/post.service');
+const PostCategoryService = require('../services/postCategory.service');
 
 const objError = { message: 'Something is wrong.' };
 
 const create = async (req, res) => {
   const { title, content, categoryIds } = req.body;
+  const token = req.header('Authorization');
   try {
-    const post = await BlogPostService.create(title, content, categoryIds);
+    const userId = await getUserId(token);
+    let post = await BlogPostService.create(title, content, userId, categoryIds);
+    post = await BlogPostService.findOne(post.id);
+    await PostCategoryService.create(post.id, categoryIds);
     res.status(201).json(post);
   } catch (error) {
     console.error(error.message);

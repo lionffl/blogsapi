@@ -13,6 +13,7 @@ const BlogPostModel = (sequelize, DataTypes) => {
     updated: DataTypes.DATE,
   }, {
     underscored: true,
+    timestamps: false,
   })
 
   BlogPost.associate = (models) => {
