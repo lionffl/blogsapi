@@ -1,0 +1,2 @@
+const { BlogPost } = require('../models');
+
