@@ -29,7 +29,19 @@ const getAll = async (_req, res) => {
   }
 };
 
+const getFullPostById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await BlogPostService.getFullPostById(id);
+    res.status(200).json(post);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(objError);
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  getFullPostById,
 };
