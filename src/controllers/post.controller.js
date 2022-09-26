@@ -40,8 +40,13 @@ const getFullPostById = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  res.status(200).json({message: 'to be implemented.' });
+};
+
 module.exports = {
   create,
   getAll,
   getFullPostById,
+  update,
 };
