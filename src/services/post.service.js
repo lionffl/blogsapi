@@ -27,10 +27,15 @@ const update = (title, content, id) => BlogPost.update({
   title, content,
 }, { where: { id } });
 
+const destroy = (id) => BlogPost.destroy({ 
+  where: { id }, 
+});
+
 module.exports = {
   create,
   getPostById,
   getFullPostById,
   getAll,
   update,
+  destroy,
 };

@@ -12,7 +12,8 @@ route.use(authenticate);
 
 route.route('/:id')
   .get(postIdValidation, BlogPostController.getFullPostById)
-  .put(postIdValidation, postUserValidation, postUpdateFieldsValidation, BlogPostController.update);
+  .put(postIdValidation, postUserValidation, postUpdateFieldsValidation, BlogPostController.update)
+  .delete(postIdValidation, postUserValidation, BlogPostController.destroy);
 
 route.route('/')
   .post(postFieldsValidation, BlogPostController.create)

@@ -53,9 +53,21 @@ const update = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await BlogPostService.destroy(id);
+    res.status(204).end();
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(objError);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getFullPostById,
   update,
+  destroy,
 };
