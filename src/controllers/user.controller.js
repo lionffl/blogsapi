@@ -1,5 +1,6 @@
 const UserService = require('../services/user.service');
 const { getToken } = require('../auth/getToken');
+const getUserId = require('../helpers/getUserId');
 
 const objError = { message: 'Something is wrong.' };
 
@@ -35,8 +36,21 @@ const getUserById = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  const token = req.header('Authorization');
+  try {
+    const userId = await getUserId(token);
+    UserService.destroy(userId);
+    res.status(204).end();
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(objError);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getUserById,
+  destroy,
 };

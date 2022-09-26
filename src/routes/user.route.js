@@ -7,8 +7,9 @@ const { authenticate } = require('../auth/authenticate');
 
 const route = express.Router();
 
-route.route('/:id')
-  .get(authenticate, userIdValidation, UserController.getUserById);
+route.route('/me').delete(authenticate, UserController.destroy);
+
+route.route('/:id').get(authenticate, userIdValidation, UserController.getUserById);
 
 route.route('/')
   .post(userFieldsValidation, userEmailValidation, UserController.create)

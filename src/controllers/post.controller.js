@@ -44,8 +44,8 @@ const update = async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
   try {
-    let post = await BlogPostService.update(title, content, id);
-    post = await BlogPostService.getFullPostById(id);
+    await BlogPostService.update(title, content, id);
+    const post = await BlogPostService.getFullPostById(id);
     res.status(200).json(post);
   } catch (error) {
     console.error(error.message);
@@ -56,7 +56,7 @@ const update = async (req, res) => {
 const destroy = async (req, res) => {
   const { id } = req.params;
   try {
-    await BlogPostService.destroy(id);
+    BlogPostService.destroy(id);
     res.status(204).end();
   } catch (error) {
     console.error(error.message);

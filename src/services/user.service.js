@@ -23,9 +23,14 @@ const getUserById = (id) => User.findOne({
   attributes: { exclude: ['password'] },
 });
 
+const destroy = (id) => User.destroy({
+  where: { id },
+});
+
 module.exports = {
   create,
   getUserByEmail,
   getAll,
   getUserById,
+  destroy,
 };
