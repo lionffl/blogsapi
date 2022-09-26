@@ -41,7 +41,16 @@ const getFullPostById = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  res.status(200).json({message: 'to be implemented.' });
+  const { id } = req.params;
+  const { title, content } = req.body;
+  try {
+    let post = await BlogPostService.update(title, content, id);
+    post = await BlogPostService.getFullPostById(id);
+    res.status(200).json(post);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(objError);
+  }
 };
 
 module.exports = {
