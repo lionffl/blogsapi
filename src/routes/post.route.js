@@ -5,10 +5,13 @@ const { postFieldsValidation } = require('../middlewares/postFieldsValidation');
 const { postIdValidation } = require('../middlewares/postIdValidation');
 const { postUpdateFieldsValidation } = require('../middlewares/postUpdateFieldsValidation');
 const { postUserValidation } = require('../middlewares/postUserValidation');
+const { postEmptySearch } = require('../middlewares/postEmptySearch');
 
 const route = express.Router();
 
 route.use(authenticate);
+
+route.route('/search').get(postEmptySearch, BlogPostController.getPostByTitleOrContent);
 
 route.route('/:id')
   .get(postIdValidation, BlogPostController.getFullPostById)

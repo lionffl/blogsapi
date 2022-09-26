@@ -64,10 +64,22 @@ const destroy = async (req, res) => {
   }
 };
 
+const getPostByTitleOrContent = async (req, res) => {
+  const { q } = req.query;
+  try {
+    const post = await BlogPostService.getPostByTitleOrContent(q);
+    res.status(200).json(post);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json(objError);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getFullPostById,
   update,
   destroy,
+  getPostByTitleOrContent,
 };
