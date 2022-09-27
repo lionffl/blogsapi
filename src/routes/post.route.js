@@ -6,6 +6,8 @@ const { postIdValidation } = require('../middlewares/postIdValidation');
 const { postUpdateFieldsValidation } = require('../middlewares/postUpdateFieldsValidation');
 const { postUserValidation } = require('../middlewares/postUserValidation');
 const { postEmptySearch } = require('../middlewares/postEmptySearch');
+const errorHandler = require('../middlewares/errorHandler');
+require('express-async-errors');
 
 const route = express.Router();
 
@@ -22,4 +24,5 @@ route.route('/')
   .post(postFieldsValidation, BlogPostController.create)
   .get(BlogPostController.getAll);
 
+route.use(errorHandler);
 module.exports = route;
