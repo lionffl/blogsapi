@@ -1,5 +1,5 @@
 # README
-Blog API developed during Trybe web development course, backend module.
+Blog API developed during Trybe's web development course.
 
 # Features
 * Endpoints to create and delete an user
