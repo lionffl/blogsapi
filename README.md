@@ -1,5 +1,5 @@
 # README
-Blog API developed during Trybe's web development course.
+A simple RESTful API using Node, Express, Sequelize, JWT and built with layered architecture. Provides endpoints to the basic CRUD (Create, Read, Update, Delete) operations for blog posts.
 
 # Features
 * Endpoints to create and delete an user
